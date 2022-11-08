@@ -1,20 +1,38 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class CarController : MonoBehaviour
 {
+	/*
+	 This is script controls the car through
+	 the RigidBody2D component that is required to 
+	 sit on the car. 
+	 
+	 The car is controlled through 
+	 two float inputs that are m_throttle and m_steerAmount
+	 which determines acceleration and steering.
+	*/
+
 	public CarConfigBase Config;
 
-	private float m_throttle;
-	private float m_steerAmount;
+	[HideInInspector]
+	public float m_throttle; //Need to be accessible by PlayerCarInput / AICarBrain
+	[HideInInspector]
+	public float m_steerAmount; //Need to be accessible by PlayerCarInput / AICarBrain
 
 	private Rigidbody2D m_rb;
 	private float m_currentVelocity;
+
+	private float m_speedometer; 
 
 	private void Update()
 	{
 		Accelerate();
 		Steer();
+		//CheckIfCarStopped(); -> WIP
+
+	//	print(m_currentVelocity);
 	}
 
 	private void FixedUpdate()
@@ -53,7 +71,16 @@ public class CarController : MonoBehaviour
 	{
 		//Multiplied by currentVel to prevent car being able to rotate when standing still
 		float rotVal = -m_steerAmount * Config.GetSteerSensitivty() * m_currentVelocity * Time.deltaTime;
-		transform.Rotate(new Vector3(0, 0, rotVal));
+		transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, 0, transform.eulerAngles.z + rotVal), .5f); 
+	}
+
+	private Vector3 previousPos; 
+	private void CheckIfCarStopped()
+	{
+		m_speedometer = Vector2.Distance(previousPos, transform.position) / Time.deltaTime;
+		print("Speed: " + m_speedometer); 
+
+		previousPos = transform.position;
 	}
 
 	private void ApplyRigidbody()
@@ -61,36 +88,9 @@ public class CarController : MonoBehaviour
 		m_rb.velocity = Vector3.Lerp(m_rb.velocity, transform.up * m_currentVelocity, Config.GetTraction() * Time.deltaTime); 
 	}
 
-
-	private void ThrottleHandle(InputAction.CallbackContext context) => m_throttle = context.ReadValue<float>();
-	private void SteeringHandle(InputAction.CallbackContext context) => m_steerAmount = context.ReadValue<float>();
-
-	private void SubscribeInputMethods()
-	{
-		InputManager.Instance.ThrottleHandler += ThrottleHandle;
-		InputManager.Instance.SteeringHandler += SteeringHandle;
-	}
-
-	private void UnsubscribeInputMethods()
-	{
-		InputManager.Instance.ThrottleHandler -= ThrottleHandle;
-		InputManager.Instance.SteeringHandler -= SteeringHandle;
-	}
-
 	private void Awake()
 	{
 		TryGetComponent<Rigidbody2D>(out m_rb);
-	}
-
-	private void Start() //InputManager.Instance is set on Awake!
-	{
-		//Subscribe car control methods to input callback
-		SubscribeInputMethods();
-	}
-
-	private void OnDisable()
-	{
-		//Unsubscribe car control methods from input callback
-		UnsubscribeInputMethods();
-	}
+		previousPos = transform.position; 
+	}	
 }
