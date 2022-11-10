@@ -34,19 +34,15 @@ public class PlayerCarInput : MonoBehaviour
 
 	private void Start() //InputManager.Instance is set on Awake!
 	{
-		if (!m_controller)
-			return; 
-
 		//Subscribe car control methods to input callback
 		SubscribeInputMethods();
 	}
 
 	private void OnDisable()
 	{
-		if (!m_controller)
-			return;
-
 		//Unsubscribe car control methods from input callback
 		UnsubscribeInputMethods();
+		m_controller.m_throttle = 0;
+		m_controller.m_steerAmount = 0; 
 	}
 }

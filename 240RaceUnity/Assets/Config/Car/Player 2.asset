@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9d422d6111e80f46abdfc02b295a140, type: 3}
-  m_Name: Player
+  m_Name: Player 2
   m_EditorClassIdentifier: 
   MaxSpeed: 10
   SteeringSensitivity: 20
@@ -18,4 +18,4 @@ MonoBehaviour:
   DecelerationAmount: -2
   BrakeAmount: 4
   Traction: 1
-  CarSprite: {fileID: 1627396934, guid: 788a6450f5472134da8e8c425a42091f, type: 3}
+  CarSprite: {fileID: 455751742, guid: 762c6b3d9b6b83b4fb291b3324b86486, type: 3}

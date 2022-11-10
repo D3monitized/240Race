@@ -16,7 +16,7 @@ public class CarConfigBase : ScriptableObject
 	[SerializeField]
 	private float Traction; //How fast the car regains traction (starts moving in the forward direction of the car)
 	[SerializeField]
-	private Sprite[] CarSprites; //The car graphics (0 = default (no turning), 1 = turn left, 2 = turn right)
+	private Sprite CarSprite; //The car graphics (0 = default (no turning), 1 = turn left, 2 = turn right)
 
 	//Getters
 	public float GetMaxSpeed() { return MaxSpeed; }
@@ -25,5 +25,5 @@ public class CarConfigBase : ScriptableObject
 	public float GetDecelerationAmount() { return DecelerationAmount; }
 	public float GetBrakeAmount() { return BrakeAmount; }
 	public float GetTraction() { return Traction; }
-	public Sprite[] GetSprites() { return CarSprites; }
+	public Sprite GetSprite() { return CarSprite; }
 }
