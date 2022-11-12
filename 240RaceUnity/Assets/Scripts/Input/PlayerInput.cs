@@ -114,6 +114,182 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""LevelEditor"",
+            ""id"": ""cc60d139-e63f-4d2d-abfb-a8e714c21581"",
+            ""actions"": [
+                {
+                    ""name"": ""PlaceTile"",
+                    ""type"": ""Button"",
+                    ""id"": ""517b64e1-22a8-421a-b76c-8183bb6c20d8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Button"",
+                    ""id"": ""c397aca0-3a20-4f33-a6c1-d315bc430f52"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""0d3e692f-7209-402f-8431-2bc78adf93b7"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Button"",
+                    ""id"": ""1418a581-435c-4837-a583-36a9b08e9a07"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""LMB/RMB"",
+                    ""id"": ""c822b160-9795-4da0-add5-d4f12912bfbc"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlaceTile"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""2c624c9a-9152-43d5-b2ab-21d6936dfbb3"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlaceTile"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""8882ed08-4444-4fc7-b0ef-e70a377f2785"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlaceTile"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""EQ"",
+                    ""id"": ""b3f4b2cc-ccaf-409c-b18b-ad20b840510e"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""26163595-c07c-4a51-bc60-0bbd30ef3a41"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""0a09acac-7021-4b9d-848a-ebec60ed4490"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""d919adac-17c9-464a-88b9-f21db48225cd"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""cf6aee4e-01e8-4c07-80e1-0fe594937b54"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""a5406b34-a098-40e2-ad03-e4500f710d58"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""63103031-4939-4241-989d-34ca0cdffa72"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""fe46c6df-a5f6-4f2f-8304-bcb467137392"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""24831ac3-fc03-448b-ab69-91c72fc1b1e7"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -122,6 +298,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Car = asset.FindActionMap("Car", throwIfNotFound: true);
         m_Car_Throttle = m_Car.FindAction("Throttle", throwIfNotFound: true);
         m_Car_Steering = m_Car.FindAction("Steering", throwIfNotFound: true);
+        // LevelEditor
+        m_LevelEditor = asset.FindActionMap("LevelEditor", throwIfNotFound: true);
+        m_LevelEditor_PlaceTile = m_LevelEditor.FindAction("PlaceTile", throwIfNotFound: true);
+        m_LevelEditor_Zoom = m_LevelEditor.FindAction("Zoom", throwIfNotFound: true);
+        m_LevelEditor_Move = m_LevelEditor.FindAction("Move", throwIfNotFound: true);
+        m_LevelEditor_Rotate = m_LevelEditor.FindAction("Rotate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -218,9 +400,73 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         }
     }
     public CarActions @Car => new CarActions(this);
+
+    // LevelEditor
+    private readonly InputActionMap m_LevelEditor;
+    private ILevelEditorActions m_LevelEditorActionsCallbackInterface;
+    private readonly InputAction m_LevelEditor_PlaceTile;
+    private readonly InputAction m_LevelEditor_Zoom;
+    private readonly InputAction m_LevelEditor_Move;
+    private readonly InputAction m_LevelEditor_Rotate;
+    public struct LevelEditorActions
+    {
+        private @PlayerInput m_Wrapper;
+        public LevelEditorActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PlaceTile => m_Wrapper.m_LevelEditor_PlaceTile;
+        public InputAction @Zoom => m_Wrapper.m_LevelEditor_Zoom;
+        public InputAction @Move => m_Wrapper.m_LevelEditor_Move;
+        public InputAction @Rotate => m_Wrapper.m_LevelEditor_Rotate;
+        public InputActionMap Get() { return m_Wrapper.m_LevelEditor; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(LevelEditorActions set) { return set.Get(); }
+        public void SetCallbacks(ILevelEditorActions instance)
+        {
+            if (m_Wrapper.m_LevelEditorActionsCallbackInterface != null)
+            {
+                @PlaceTile.started -= m_Wrapper.m_LevelEditorActionsCallbackInterface.OnPlaceTile;
+                @PlaceTile.performed -= m_Wrapper.m_LevelEditorActionsCallbackInterface.OnPlaceTile;
+                @PlaceTile.canceled -= m_Wrapper.m_LevelEditorActionsCallbackInterface.OnPlaceTile;
+                @Zoom.started -= m_Wrapper.m_LevelEditorActionsCallbackInterface.OnZoom;
+                @Zoom.performed -= m_Wrapper.m_LevelEditorActionsCallbackInterface.OnZoom;
+                @Zoom.canceled -= m_Wrapper.m_LevelEditorActionsCallbackInterface.OnZoom;
+                @Move.started -= m_Wrapper.m_LevelEditorActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_LevelEditorActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_LevelEditorActionsCallbackInterface.OnMove;
+                @Rotate.started -= m_Wrapper.m_LevelEditorActionsCallbackInterface.OnRotate;
+                @Rotate.performed -= m_Wrapper.m_LevelEditorActionsCallbackInterface.OnRotate;
+                @Rotate.canceled -= m_Wrapper.m_LevelEditorActionsCallbackInterface.OnRotate;
+            }
+            m_Wrapper.m_LevelEditorActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @PlaceTile.started += instance.OnPlaceTile;
+                @PlaceTile.performed += instance.OnPlaceTile;
+                @PlaceTile.canceled += instance.OnPlaceTile;
+                @Zoom.started += instance.OnZoom;
+                @Zoom.performed += instance.OnZoom;
+                @Zoom.canceled += instance.OnZoom;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Rotate.started += instance.OnRotate;
+                @Rotate.performed += instance.OnRotate;
+                @Rotate.canceled += instance.OnRotate;
+            }
+        }
+    }
+    public LevelEditorActions @LevelEditor => new LevelEditorActions(this);
     public interface ICarActions
     {
         void OnThrottle(InputAction.CallbackContext context);
         void OnSteering(InputAction.CallbackContext context);
+    }
+    public interface ILevelEditorActions
+    {
+        void OnPlaceTile(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
     }
 }

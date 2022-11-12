@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxSpeed: 10
   SteeringSensitivity: 20
-  AccelerationAmount: 1.5
+  AccelerationAmount: 3.5
   DecelerationAmount: -2
-  BrakeAmount: 4
+  BrakeAmount: 10
   Traction: 1
   CarSprite: {fileID: 1370162351, guid: 815812fba4fe5f242b5994fea78241ba, type: 3}

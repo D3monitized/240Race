@@ -139,6 +139,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64f1810bd8fe82e4fbf422e6eb132d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFinishLine: 0
+  MySave:
+    MyPosition: {x: 0, y: 0}
+    MyRotation: {x: 0, y: 0, z: 0, w: 0}
+    MyPrefab: {fileID: 0}
+  m_myType: 1
 --- !u!212 &4410553061175828408
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -30,7 +30,10 @@ public class HUD : MonoBehaviour
 		if (m_player == null)
 			return;
 
-		m_racePosText.text = (m_player.CurrentPosition + 1).ToString() + "/" + allContestants.Length;
+		if(m_player.FinalPosition == -1)
+			m_racePosText.text = (m_player.CurrentPosition + 1).ToString() + "/" + allContestants.Length;
+		else
+			m_racePosText.text = (m_player.FinalPosition + 1).ToString() + "/" + allContestants.Length;
 	}
 
 	private int m_countdownPreviousFrame; //required for checking whether or not a second has passed

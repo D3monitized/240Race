@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64f1810bd8fe82e4fbf422e6eb132d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFinishLine: 0
+  TransformFromSave: {fileID: 0}
+  MyPrefab: {fileID: 0}
 --- !u!212 &6605935544939553097
 SpriteRenderer:
   m_ObjectHideFlags: 0
