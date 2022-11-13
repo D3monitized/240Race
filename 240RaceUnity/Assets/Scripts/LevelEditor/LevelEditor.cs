@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEditor; 
 using System.Collections.Generic;
 using System.Collections; 
 
@@ -15,23 +16,27 @@ public class LevelEditor : MonoBehaviour
 
 	public RacetrackTilesBase Tiles; //All tiles that are placeable
 
+	//Grid
 	public Vector2Int GetGridSize() { return m_gridSize; }
 	[SerializeField]
 	private Vector2Int m_gridSize;
 	public float GetNodeSize() { return m_nodeDiameter; }
 	private float m_nodeDiameter = 10;
+	private GridNode[,] m_grid;
 	
+	//Components
 	[SerializeField]
 	private Sprite m_sprite; //Node sprite (Grid square)
 
-	private GridNode[,] m_grid;
 	private GameObject m_currentTile; //The currently selected tile 
 
 	private Transform m_raceTileParent;
 	private Transform m_gridNodeParent;
 
+	//Level Saving
 	[SerializeField]
-	private List<RacetrackTileSaveFile> m_tiles;  
+	private List<RacetrackTileSaveFile> m_tiles;
+	private const string m_savePath = "Assets/SaveData/UserLevels";
 
 	public void ChangeCurrentTile(GameObject tile) => m_currentTile = tile; 
 	private void PlaceTile(Vector2 mousePosition)
@@ -135,7 +140,34 @@ public class LevelEditor : MonoBehaviour
 		}
 	}
 
-	public void SaveLevel()
+	//Create a new savefile asset in directory
+	public bool SaveLevel(string name)
+	{
+		SortLevelTiles(); //Create a list out of the level tiles that's sorted in correct order
+
+		RacetrackSaveFile saveFile = ScriptableObject.CreateInstance<RacetrackSaveFile>(); //Create a new instance of a save file
+		saveFile.Tiles = m_tiles; //Copy list of tiles to savefile
+		saveFile.Name = name; 
+
+		string savePath = m_savePath + "/" + name + ".asset";
+
+		string[] userLevels = AssetDatabase.FindAssets("t:RacetrackSaveFile"); //Serch for assets of type RacetrackSaveFile
+		
+		if (userLevels.Length > 0)
+			foreach (string guid in userLevels)
+				if (AssetDatabase.GUIDToAssetPath(guid) == savePath) //if found asset has same path as new savepath -> return false
+					return false; 
+
+		AssetDatabase.CreateAsset(saveFile, savePath); //Create an asset out of savefile instance
+		AssetDatabase.SaveAssets(); //Save asset
+		AssetDatabase.Refresh(); //Refresh directory
+		Selection.activeObject = saveFile; //Focus on savefile in directory
+
+		DestroyAndRecreateLevel(); //Visualize the order the AI will traverse the level in
+		return true;
+	}
+
+	private void SortLevelTiles() //Sort in correct order for ai to be able to traverse the level in the correct order
 	{
 		m_tiles = new List<RacetrackTileSaveFile>(); 
 
@@ -161,6 +193,9 @@ public class LevelEditor : MonoBehaviour
 			Vector2Int bottom = currentTile - Vector2Int.up;
 			Vector2Int right = currentTile + Vector2Int.right;
 			Vector2Int left = currentTile - Vector2Int.right;
+
+			//Go through all the neighbours and find one that is not out of bounds, not the previous tile, that is occupied by a tile and doesn't have a collider in the way.
+
 
 			if(IsNotOutOfBounds(top) && m_grid[top.x, top.y].Occupied && top != previousTile && !m_grid[currentTile.x, currentTile.y].RaceTile.GetComponent<RacetrackTile>().IsBlocked(Vector2Int.up))
 			{
@@ -195,8 +230,6 @@ public class LevelEditor : MonoBehaviour
 				continue;
 			}
 		}
-
-		DestroyAndRecreateLevel(); 
 	}
 
 	private void DestroyAndRecreateLevel()
@@ -207,12 +240,12 @@ public class LevelEditor : MonoBehaviour
 		}
 
 		StartCoroutine(RecreateLevelInOrder()); 
-	}
+	}	
 
 	private int iteration; 
-	private IEnumerator RecreateLevelInOrder()
+	private IEnumerator RecreateLevelInOrder() //Visualization of sorted level -> reconstructed in correct order
 	{
-		yield return new WaitForSecondsRealtime(.5f);
+		yield return new WaitForSecondsRealtime(.25f);
 
 		GameObject go = Instantiate(
 			m_tiles[iteration].MyPrefab, 
@@ -229,6 +262,8 @@ public class LevelEditor : MonoBehaviour
 			StartCoroutine(RecreateLevelInOrder());
 		}
 	}
+
+	
 
 	private void Awake()
 	{
