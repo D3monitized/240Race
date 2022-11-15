@@ -7,5 +7,9 @@ public class RacetrackSaveFile : ScriptableObject
     public string Name; //Name of savefile
 
     [SerializeField] [HideInInspector]
+    public Texture2D Image; 
+
+    [SerializeField] [HideInInspector]
     public List<RacetrackTileSaveFile> Tiles; //A list of all racetrack tiles
+
 }

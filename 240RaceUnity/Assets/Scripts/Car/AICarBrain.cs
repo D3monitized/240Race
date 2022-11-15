@@ -9,7 +9,7 @@ public class AICarBrain : MonoBehaviour
 		by changing throttle/steering inputs in car controller.
 	*/
 	
-	private RacetrackTile[] m_nodes;
+	private RacetrackTile[] m_nodes = new RacetrackTile[0];
 	public int m_currentNode; 
 
     private CarController m_controller;
@@ -40,17 +40,22 @@ public class AICarBrain : MonoBehaviour
 		}
 	}
 
+	private void GetTiles(RacetrackTile[] tiles)
+	{
+		m_nodes = tiles; 
+	}
+
 	private void Awake()
 	{
-		TryGetComponent<CarController>(out m_controller); 
+		TryGetComponent<CarController>(out m_controller);		
 	}
 
 	private void Start()
 	{
 		if (Racetrack.Instance)
-			m_nodes = Racetrack.Instance.GetNodes(); 
+			Racetrack.Instance.OnRaceStartHandler += GetTiles;
 	}
-
+	
 	private void OnDisable()
 	{
 		m_controller.m_steerAmount = 0;

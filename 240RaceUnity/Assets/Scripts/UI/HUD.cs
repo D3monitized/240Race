@@ -92,16 +92,16 @@ public class HUD : MonoBehaviour
 
 	private void SubscribeEvent()
 	{
-		if (!Racetrack.Instance)
+		if (Racetrack.Instance)
+			Racetrack.Instance.OnRaceFinishedHandler += ShowResultsPanel;
+
+		if (!ReplayManager.Instance)
 			return;
 
-		Racetrack.Instance.OnRaceFinishedHandler += ShowResultsPanel;
+		print("Subscribed Event");
 
-		if (!GameManager.Instance)
-			return;
-
-		GameManager.Instance.OnReplayStartedHandler += HideResultsPanel; 
-		GameManager.Instance.OnReplayFinishedHandler += ShowResultsPanel; 
+		ReplayManager.Instance.OnReplayStartedHandler += HideResultsPanel; 
+		ReplayManager.Instance.OnReplayFinishedHandler += ShowResultsPanel; 
 	}
 
 	private void UnsubscribeEvent()
@@ -111,11 +111,11 @@ public class HUD : MonoBehaviour
 
 		Racetrack.Instance.OnRaceFinishedHandler -= ShowResultsPanel;
 
-		if (!GameManager.Instance)
+		if (!ReplayManager.Instance)
 			return;
 
-		GameManager.Instance.OnReplayStartedHandler -= HideResultsPanel;
-		GameManager.Instance.OnReplayFinishedHandler -= ShowResultsPanel;
+		ReplayManager.Instance.OnReplayStartedHandler -= HideResultsPanel;
+		ReplayManager.Instance.OnReplayFinishedHandler -= ShowResultsPanel;
 	}
 
 	private void OnDisable()

@@ -4,6 +4,8 @@ using UnityEngine.UI;
 public class LevelEditor_Palette : MonoBehaviour
 {
 	[SerializeField]
+	private Button m_backButton; 
+	[SerializeField]
 	private Button m_saveButton; 
 	[SerializeField]
 	private Button m_arrowButton;
@@ -80,6 +82,14 @@ public class LevelEditor_Palette : MonoBehaviour
 		}
 	}
 
+	private void GoToMenu()
+	{
+		if (!GameManager.Instance)
+			return;
+
+		GameManager.Instance.StartCoroutine(GameManager.Instance.LoadLevel(0)); 
+	}
+
 	private void Start()
 	{
 		//Palette
@@ -95,5 +105,7 @@ public class LevelEditor_Palette : MonoBehaviour
 		//Savename window
 		m_savenameBackButton.onClick.AddListener(delegate { ShowSaveNameWindow(false); });
 		m_savenameSaveButton.onClick.AddListener(delegate { SaveLevel(m_savenameSaveText.text); });
+
+		m_backButton.onClick.AddListener(delegate { GoToMenu(); });
 	}
 }

@@ -46,10 +46,10 @@ public class ResultsPanel : MonoBehaviour
 
     private void SetupButtonListeners()
 	{
-        if (!GameManager.Instance)
+        if (!ReplayManager.Instance)
             return; 
 
         m_restartButton.onClick.AddListener(delegate { GameManager.Instance.RestartLevel(); });
-        m_replayButton.onClick.AddListener(delegate { GameManager.Instance.StartReplay(); });
+        m_replayButton.onClick.AddListener(delegate { ReplayManager.Instance.StartReplay(); });
 	}    
 }

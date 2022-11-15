@@ -3,10 +3,10 @@ using UnityEngine.InputSystem;
 
 public class CameraController_LevelEditor : MonoBehaviour
 {
-	[SerializeField]
-	private float m_moveSpeed = 1;
-	[SerializeField]
-	private float m_zoomSpeed = 2;
+	//[SerializeField]
+	private float m_moveSpeed = 0;
+	//[SerializeField]
+	private float m_zoomSpeed = 0;
 	private Vector2 m_moveDir;
 	private float m_zoomVal;
 

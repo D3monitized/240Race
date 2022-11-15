@@ -37,6 +37,7 @@ public class LevelEditor : MonoBehaviour
 	[SerializeField]
 	private List<RacetrackTileSaveFile> m_tiles;
 	private const string m_savePath = "Assets/SaveData/UserLevels";
+	private string m_latestSavePath; 
 
 	public void ChangeCurrentTile(GameObject tile) => m_currentTile = tile; 
 	private void PlaceTile(Vector2 mousePosition)
@@ -147,9 +148,10 @@ public class LevelEditor : MonoBehaviour
 
 		RacetrackSaveFile saveFile = ScriptableObject.CreateInstance<RacetrackSaveFile>(); //Create a new instance of a save file
 		saveFile.Tiles = m_tiles; //Copy list of tiles to savefile
-		saveFile.Name = name; 
-
+		saveFile.Name = name;
+		
 		string savePath = m_savePath + "/" + name + ".asset";
+		m_latestSavePath = savePath; 
 
 		string[] userLevels = AssetDatabase.FindAssets("t:RacetrackSaveFile"); //Serch for assets of type RacetrackSaveFile
 		
@@ -261,9 +263,18 @@ public class LevelEditor : MonoBehaviour
 			iteration++;
 			StartCoroutine(RecreateLevelInOrder());
 		}
-	}
-
-	
+		else
+		{
+			GameObject.Find("UI").GetComponent<Canvas>().enabled = false;
+			yield return new WaitForEndOfFrame(); 
+			Texture2D tex = ScreenCapture.CaptureScreenshotAsTexture();
+			GameObject.Find("UI").GetComponent<Canvas>().enabled = true;
+			RacetrackSaveFile saveFile = AssetDatabase.LoadAssetAtPath(m_latestSavePath, typeof(RacetrackSaveFile)) as RacetrackSaveFile;
+			AssetDatabase.AddObjectToAsset(tex, saveFile);
+			saveFile.Image = tex;
+			AssetDatabase.SaveAssets(); 
+		}
+	}	
 
 	private void Awake()
 	{
