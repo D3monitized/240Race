@@ -45,7 +45,7 @@ public class Racetrack : MonoBehaviour
 	private void UpdateRacePositions()
 	{
 		if (m_raceFinished)
-			return; 
+			return;
 
 		for (var i = 0; i < m_contestants.Count; i++)
 		{
@@ -193,7 +193,6 @@ public class Racetrack : MonoBehaviour
 		m_contestants[rand].IsPlayer = true; 
 		m_contestants[rand].GetComponent<PlayerCarInput>().enabled = true;
 		m_contestants[rand].GetComponent<AICarBrain>().enabled = false;
-		m_contestants[rand].GetComponent<AudioSource>().enabled = true; 
 
 		if (CameraController.Instance)
 			CameraController.Instance.AssignTarget(m_contestants[rand].transform); 

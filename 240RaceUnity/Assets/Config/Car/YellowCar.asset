@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d422d6111e80f46abdfc02b295a140, type: 3}
   m_Name: YellowCar
   m_EditorClassIdentifier: 
-  MaxSpeed: 10
-  SteeringSensitivity: 20
-  AccelerationAmount: 3.5
-  DecelerationAmount: -2
-  BrakeAmount: 10
+  MaxSpeed: 15
+  SteeringSensitivity: 6000
+  AccelerationAmount: 5
+  DecelerationAmount: -3
+  BrakeAmount: 15
   Traction: 1
   CarSprite: {fileID: 2100160261, guid: 45ecc8ec23e782a41ab4b842639e2a07, type: 3}

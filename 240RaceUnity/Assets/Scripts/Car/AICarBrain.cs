@@ -26,10 +26,12 @@ public class AICarBrain : MonoBehaviour
 
 		m_controller.m_throttle = 1;
 
-		if (transform.InverseTransformPoint(m_nodes[m_currentNode].transform.position).x < transform.InverseTransformPoint(transform.position).x) //if target's on the leftside of the car -> turn left
+		if (transform.InverseTransformPoint(m_nodes[m_currentNode].transform.position).x - transform.InverseTransformPoint(transform.position).x < -2) //if target's on the leftside of the car -> turn left
 			m_controller.m_steerAmount = -1;
-		else // turn right
-			m_controller.m_steerAmount = 1; 
+		else if (transform.InverseTransformPoint(m_nodes[m_currentNode].transform.position).x - transform.InverseTransformPoint(transform.position).x > 2)// turn right
+			m_controller.m_steerAmount = 1;
+		else
+			m_controller.m_steerAmount = 0; 
 
 		if(Vector3.Distance(m_nodes[m_currentNode].transform.position, transform.position) < 7)
 		{

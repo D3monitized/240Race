@@ -30,9 +30,6 @@ public class CarController : MonoBehaviour
 	{
 		Accelerate();
 		Steer();
-		//CheckIfCarStopped(); -> WIP
-
-	//	print(m_currentVelocity);
 	}
 
 	private void FixedUpdate()
@@ -70,18 +67,12 @@ public class CarController : MonoBehaviour
 	private void Steer()
 	{
 		//Multiplied by currentVel to prevent car being able to rotate when standing still
+
 		float rotVal = -m_steerAmount * Config.GetSteerSensitivty() * m_currentVelocity * Time.deltaTime;
-		transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, 0, transform.eulerAngles.z + rotVal), .5f); 
+		m_rb.angularVelocity = rotVal; 
 	}
 
-	private Vector3 previousPos; 
-	private void CheckIfCarStopped()
-	{
-		m_speedometer = Vector2.Distance(previousPos, transform.position) / Time.deltaTime;
-		print("Speed: " + m_speedometer); 
-
-		previousPos = transform.position;
-	}
+	private Vector3 previousPos; 	
 
 	private void ApplyRigidbody()
 	{

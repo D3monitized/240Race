@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d422d6111e80f46abdfc02b295a140, type: 3}
   m_Name: BlueCar
   m_EditorClassIdentifier: 
-  MaxSpeed: 10
-  SteeringSensitivity: 20
-  AccelerationAmount: 3.5
-  DecelerationAmount: -2
-  BrakeAmount: 10
+  MaxSpeed: 15
+  SteeringSensitivity: 6000
+  AccelerationAmount: 5
+  DecelerationAmount: -3
+  BrakeAmount: 15
   Traction: 1
   CarSprite: {fileID: 1370162351, guid: 815812fba4fe5f242b5994fea78241ba, type: 3}

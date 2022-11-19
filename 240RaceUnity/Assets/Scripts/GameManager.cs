@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
 	public OnSceneLoaded OnSceneLoadedHandler;
 
 	public delegate void OnSceneReloaded();
-	public OnSceneReloaded OnSceneReloadedHandler; 
+	public OnSceneReloaded OnSceneReloadedHandler;
+
 
 	public IEnumerator LoadLevel(int buildIndex)
 	{
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
 	public void RestartLevel()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-	}	
+	}
 
 	private void Awake()
 	{
